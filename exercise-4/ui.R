@@ -12,7 +12,9 @@ shinyUI(navbarPage('Electoral College',
                               sidebarPanel(
                                 
                                 # Input to select variable to map
-                                selectInput('mapvar', label = 'Variable to Map', choices = list("Population" = 'population', 'Electoral Votes' = 'votes', 'Votes / Population' = 'ratio'))
+                                selectInput('mapvar', label = 'Variable to Map', choices = list("Population" = 'population', 
+                                                                                                'Electoral Votes' = 'votes', '
+                                                                                                Votes / Population' = 'ratio'))
                               ),
                               
                               # Main panel: display plotly map
@@ -20,22 +22,27 @@ shinyUI(navbarPage('Electoral College',
                                 plotlyOutput('map')
                               )
                             )
-                   ) 
+                   ), 
                    
                    # Create a tabPanel to show your scatter plot
-                   
+                   tabPanel('Scatter',
                             # Add a titlePanel to your tab
-                   
+                            titlePanel('Population v.s. Vote Power'),
                             
                             # Create a sidebar layout for this tab (page)
-                   
+                            sidebarLayout(
                               
                               # Create a sidebarPanel for your controls
-                   
+                              sidebarPanel(
                                 
                                 # Make a textInput widget for searching for a state in your scatter plot
-                   
+                                textInput('search', label="Find a State", value = '')
+                              ),
                               
                               # Create a main panel, in which you should display your plotly Scatter plot
-                              
+                              mainPanel(
+                                plotlyOutput('scatter')
+                              )
+                            )
+                   )      
 ))
